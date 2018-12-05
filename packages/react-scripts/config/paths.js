@@ -73,14 +73,22 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+// @--- custom scripts changes ---@
+/*
+we changed names for build, public directories
+and places and names for index.html and index.js
+ */
+const entry = process.env.ENTRY ? process.env.ENTRY : 'index';
+// @--- end of custom scripts changes ---@
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appBuild: resolveApp(`build_${entry}`),
+  appPublic: resolveApp(`public_${entry}`),
+  appHtml: resolveApp(`src/${entry}.html`),
+  appIndexJs: resolveModule(resolveApp, `src/${entry}`),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -99,10 +107,10 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appBuild: resolveApp(`build_${entry}`),
+  appPublic: resolveApp(`public_${entry}`),
+  appHtml: resolveApp(`src/${entry}.html`),
+  appIndexJs: resolveModule(resolveApp, `src/${entry}`),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),

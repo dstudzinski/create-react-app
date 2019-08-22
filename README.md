@@ -1,14 +1,36 @@
 # This is fork to support multiple entry points without eject
 
-Custom version is on `dstudzinski/create-react-app/tree/feature/custom-react-scripts` on branch and all custom versions are marked and published from this branch
+Custom version is on `dstudzinski/create-react-app/tree/feature/custom-react-scripts` branch and all custom versions are marked and published from this branch.
+This branch should NOT BE merged to master for easier comparision/update/etc
 
 ## How to update custom scripts:
 1. Update this fork - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
 2. Update `dstudzinski/create-react-app/tree/feature/custom-react-scripts` branch (merge change from master to this branch - IMPORTANT! do not merge whole master - only to the commit tagged with eg latest version)
 3. Resolve conflicts, make sure that version (in `packages/react-scripts/package.json`) is also updated (we use same versions like original scripts)
 4. Commit changes,
-5. Publish (from `packages/react-scripts` directory)
-6. Add tag to commit which was used as a new, published version (version-custom like v3.1.1-custom)
+5. Publish (from `packages/react-scripts` directory with `npm publish`)
+6. Add tag to commit which was used as a new, published version with `git tag <tagname>` (where <tagname> is like <version>-custom eg. v3.1.1-custom) 
+
+## How to update you repo deps:
+You can't just update react-scripts version to new custom version and all other deps to latest versions!
+
+You have to:
+1. Create new empty React project with custom scripts `create-react-app test-new-custom-scripts --scripts-version @dstudzinski/react-scripts`
+2. compare all dependecies from new project with your project and update all of them in your project to exact versions!
+3. Update all other (your custom) deps if needed
+  
+### Jest, WebStorm, other deps
+Sometimes WebStorm doesn't understand scoped react-scripts and doesn't detect Jest (you can't run single tests in IDE).
+In such case you have to manually point you Jest path in run configurations to scoped react scripts like `<your_app>/node_modules/@dstudzinski/react-scripts`  
+  
+If anytime you have to install the same dep which is used internally by react scripts it's usually a good idea to install exactly same version (like you have to install Jest for some reason side by side with react scripts). To check which exact version is used internally by react scripts just eject in your test project with `npm eject` and check versions in package.json
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
 
 
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)

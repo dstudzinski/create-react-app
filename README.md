@@ -5,9 +5,10 @@ Custom version is on `dstudzinski/create-react-app/tree/feature/custom-react-scr
 ## How to update custom scripts:
 1. Update this fork - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
 2. Update `dstudzinski/create-react-app/tree/feature/custom-react-scripts` branch (merge change from master to this branch - IMPORTANT! do not merge whole master - only to the commit tagged with eg latest version)
-3. Resolve conflicts, make sure that version is also updated (we use same versions like original scripts)
-4. Commit and publish
-5. Add tag to commit which was used as a new, published version (version-custom like v3.1.1-custom)
+3. Resolve conflicts, make sure that version (in `packages/react-scripts/package.json`) is also updated (we use same versions like original scripts)
+4. Commit changes,
+5. Publish (from `packages/react-scripts` directory)
+6. Add tag to commit which was used as a new, published version (version-custom like v3.1.1-custom)
 
 
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)

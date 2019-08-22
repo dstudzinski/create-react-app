@@ -34,7 +34,7 @@ Just create a project, and you’re good to go.
 
 ## Creating an App
 
-**You’ll need to have Node >= 6 on your local development machine** (but it’s not required on the server). You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to easily switch Node versions between different projects.
+**You’ll need to have Node >= 8.10 on your local development machine** (but it’s not required on the server). You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to easily switch Node versions between different projects.
 
 To create a new app, you may choose one of the following methods:
 
@@ -61,6 +61,18 @@ yarn create react-app my-app
 ```
 
 _`yarn create` is available in Yarn 0.25+_
+
+### Creating a TypeScript app
+
+Follow our [Adding TypeScript](adding-typescript.md) documentation to create a TypeScript app.
+
+### Selecting a package manager
+
+When you create a new app, the CLI will use [Yarn](https://yarnpkg.com/) to install dependencies (when available). If you have Yarn installed, but would prefer to use npm, you can append --use-npm to the creation command. For example:
+
+```sh
+npx create-react-app my-app --use-npm
+```
 
 ## Output
 

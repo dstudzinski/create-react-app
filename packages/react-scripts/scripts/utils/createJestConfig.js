@@ -10,6 +10,7 @@
 const fs = require('fs');
 const chalk = require('react-dev-utils/chalk');
 const paths = require('../../config/paths');
+const modules = require('../../config/modules');
 
 module.exports = (resolve, rootDir, isEjecting) => {
   // Use this instead of `paths.testsSetup` to avoid putting
@@ -22,6 +23,8 @@ module.exports = (resolve, rootDir, isEjecting) => {
     : undefined;
 
   const config = {
+    roots: ['<rootDir>/src'],
+
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
 
     setupFiles: [
@@ -33,10 +36,9 @@ module.exports = (resolve, rootDir, isEjecting) => {
     setupFilesAfterEnv: setupTestsFile ? [setupTestsFile] : [],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-      '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}',
+      '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
     ],
-    testEnvironment: 'jsdom',
-    testURL: 'http://localhost',
+    testEnvironment: 'jest-environment-jsdom-fourteen',
     transform: {
       '^.+\\.(js|jsx|ts|tsx)$': isEjecting
         ? '<rootDir>/node_modules/babel-jest'
@@ -50,6 +52,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
       '^.+\\.module\\.(css|sass|scss)$',
     ],
+    modulePaths: modules.additionalModulePaths || [],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
@@ -58,8 +61,8 @@ module.exports = (resolve, rootDir, isEjecting) => {
       ext => !ext.includes('mjs')
     ),
     watchPlugins: [
-      require.resolve('jest-watch-typeahead/filename'),
-      require.resolve('jest-watch-typeahead/testname'),
+      'jest-watch-typeahead/filename',
+      'jest-watch-typeahead/testname',
     ],
   };
   if (rootDir) {
@@ -70,18 +73,29 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'collectCoverageFrom',
     'coverageReporters',
     'coverageThreshold',
+    'coveragePathIgnorePatterns',
     'extraGlobals',
     'globalSetup',
     'globalTeardown',
+    'moduleNameMapper',
     'resetMocks',
     'resetModules',
     'snapshotSerializers',
+    'transform',
+    'transformIgnorePatterns',
     'watchPathIgnorePatterns',
   ];
   if (overrides) {
     supportedKeys.forEach(key => {
-      if (overrides.hasOwnProperty(key)) {
-        config[key] = overrides[key];
+      if (Object.prototype.hasOwnProperty.call(overrides, key)) {
+        if (Array.isArray(config[key]) || typeof config[key] !== 'object') {
+          // for arrays or primitive types, directly override the config key
+          config[key] = overrides[key];
+        } else {
+          // for object types, extend gracefully
+          config[key] = Object.assign({}, config[key], overrides[key]);
+        }
+
         delete overrides[key];
       }
     });

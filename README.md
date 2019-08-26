@@ -21,7 +21,9 @@ You have to:
   
 ### Jest, WebStorm, other deps
 Sometimes WebStorm doesn't understand scoped react-scripts and doesn't detect Jest (you can't run single tests in IDE).
-In such case you have to manually point you Jest path in run configurations to scoped react scripts like `<your_app>/node_modules/@dstudzinski/react-scripts`  
+You have to install Jest directly (has it in your package.json). It has to be in the same version like in react-scripts (do eject on your test project)
+
+To use run configurations in WebStorm to run eg all tests etc you have to manually point Jest path in run configurations to scoped react scripts like `<your_app>/node_modules/@dstudzinski/react-scripts`  
   
 If anytime you have to install the same dep which is used internally by react scripts it's usually a good idea to install exactly same version (like you have to install Jest for some reason side by side with react scripts). To check which exact version is used internally by react scripts just eject in your test project with `npm eject` and check versions in package.json
 

@@ -15,7 +15,7 @@ This branch should NOT BE merged to master for easier comparision/update/etc
 You can't just update react-scripts version to new custom version and all other deps to latest versions!
 
 You have to:
-1. Create new empty React project with custom scripts `create-react-app test-new-custom-scripts --scripts-version @dstudzinski/react-scripts`
+1. Create new empty React project with custom scripts `npx create-react-app test-new-custom-scripts --scripts-version @dstudzinski/react-scripts`
 2. compare all dependecies from new project with your project and update all of them in your project to exact versions!
 3. Update all other (your custom) deps if needed
   

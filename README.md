@@ -5,11 +5,23 @@ This branch should NOT BE merged to master for easier comparision/update/etc
 
 ## How to update custom scripts:
 1. Update this fork - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
-2. Update `dstudzinski/create-react-app/tree/feature/custom-react-scripts` branch (merge change from master to this branch - IMPORTANT! do not merge whole master - only to the commit tagged with eg latest version)
+2. Fetch and push all tags from upstream:
+```
+git checkout master
+git fetch upstream
+git rebase upstream/master
+git push
+git push --tags
+```
+2. Update `dstudzinski/create-react-app/tree/feature/custom-react-scripts` branch (merge change from master to this branch - IMPORTANT! do not merge whole master - only to the commit tagged with eg latest version) with:
+```
+git checkout feature/custom-react-scripts
+git merge tag_name
+```
 3. Resolve conflicts, make sure that version (in `packages/react-scripts/package.json`) is also updated (we use same versions like original scripts)
 4. Commit changes,
 5. Publish (from `packages/react-scripts` directory with `npm publish`)
-6. Add tag to commit which was used as a new, published version with `git tag <tagname>` (where <tagname> is like <version>-custom eg. v3.1.1-custom) 
+6. Add tag to commit which was used as a new, published version with `git tag <tagname>` (where <tagname> is like <version>-custom eg. `v3.1.1-custom`) 
 
 ## How to update you repo deps:
 You can't just update react-scripts version to new custom version and all other deps to latest versions!

@@ -22,6 +22,7 @@ git merge tag_name
 4. Commit changes,
 5. Publish (from `packages/react-scripts` directory with `npm publish`)
 6. Add tag to commit which was used as a new, published version with `git tag <tagname>` (where <tagname> is like <version>-custom eg. `v3.1.1-custom`) 
+7. push all changes and tags with `git push` and `git push --tags`
 
 ## How to update you repo deps:
 You can't just update react-scripts version to new custom version and all other deps to latest versions!

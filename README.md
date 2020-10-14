@@ -5,6 +5,11 @@ This branch should NOT BE merged to master for easier comparision/update/etc
 
 ## How to update custom scripts:
 1. Update this fork with GitHub web UI - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
+1.1 Configure `git upstream` if needed:
+```
+git remote add upstream https://github.com/facebook/create-react-app.git
+```
+
 2. Fetch and push all tags from upstream:
 ```
 git checkout master

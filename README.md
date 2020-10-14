@@ -4,7 +4,7 @@ Custom version is on `dstudzinski/create-react-app/tree/feature/custom-react-scr
 This branch should NOT BE merged to master for easier comparision/update/etc
 
 ## How to update custom scripts:
-1. Update this fork - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
+1. Update this fork with GitHub web UI - merge `facebook/create-react-app/tree/master` to `dstudzinski/create-react-app/tree/master` by creating PR (you have to switch direction of default PR)
 2. Fetch and push all tags from upstream:
 ```
 git checkout master
